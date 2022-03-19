@@ -1,0 +1,9 @@
+==== ARFCLOUD DISCLAIMER ====
+If your data is leaked because someone bruteforced your password
+I DO NOT MAKE ME RESPONSIBLE FOR IT
+Having a weak password is YOUR fault
+
+Your data is NOT encrypted in the server and I CAN SEE it
+That means that if the server is compromised ALL your data could be leaked
+I also do not make responsible for it, this server is reasonably secure
+

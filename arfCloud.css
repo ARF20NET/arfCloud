@@ -1,0 +1,18 @@
+.wrapper{
+	width: 350px;
+	padding: 20px;
+	border-style: double;
+	margin: auto;
+	margin-top: 200px;
+}
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

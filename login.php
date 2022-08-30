@@ -22,14 +22,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter username.";
     } else{
-        $username = trim($_POST["username"]);
+		if (preg_match("[a-zA-Z0-9_]+", $_POST["username"]) == 1) {
+			$username_err = "Invalid username.";
+		else {
+			$username = trim($_POST["username"]);
+		}
     }
     
     // Check if password is empty
     if(empty(trim($_POST["password"]))){
         $password_err = "Please enter your password.";
     } else{
-        $password = trim($_POST["password"]);
+		if (preg_match("[a-zA-Z0-9_]+", $_POST["password"]) == 1) {
+			$username_err = "Invalid password.";
+		else {
+			$password = trim($_POST["password"]);
+		}
     }
     
     // Validate credentials

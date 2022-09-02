@@ -24,6 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
 		if (preg_match("[a-zA-Z0-9_]+", $_POST["username"]) == 1) {
 			$username_err = "Invalid username.";
+		}
 		else {
 			$username = trim($_POST["username"]);
 		}
@@ -35,6 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
 		if (preg_match("[a-zA-Z0-9_]+", $_POST["password"]) == 1) {
 			$username_err = "Invalid password.";
+		}
 		else {
 			$password = trim($_POST["password"]);
 		}

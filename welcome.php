@@ -48,10 +48,8 @@ function printPerm() {
 checkPerm();
 
 function check($str) {
-	if (strpos($str, "..") === false) {
-		
-	} else {
-		die("No .. allowed, fuck you.");
+	if (strpos($str, "..") || strpbrk($str, "\"\'<>\\")) {
+		die("No .. or special charecters allowed, fuck you.");
 	}
 }
 
@@ -97,6 +95,7 @@ if (isset($_POST["upload"])) {
 	if ($perm == 2) $target_dir = $root . "/" . $_GET["path"];
 	if ($perm == 15) $target_dir = $root . $_GET["path"];
 	$target_file = $target_dir . "/" . basename($_FILES["fileToUpload"]["name"]);
+	check($target_file);
 	move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 	echo "$perm Uploading to " . $target_file;
 	//die('<meta http-equiv="refresh" content="0; URL=../main">');
@@ -108,11 +107,11 @@ if (isset($_POST["mkdir"])) {
 	global $perm;
 	$target_dir = "";
 	
-	check($target_dir);
-	
 	if ($perm == 2) $target_dir = $root . $_GET["mkdir"] . "/" . $_POST["dirname"];
 	if ($perm == 15) $target_dir = $root . $_GET["mkdir"] . "/" . $_POST["dirname"];
-	
+
+	check($target_dir);
+
 	//echo "Creating dir " . $target_dir;
 	mkdir($target_dir);
 	

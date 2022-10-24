@@ -10,8 +10,8 @@ $username_err = $password_err = $confirm_password_err = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate username
-    if(empty(trim($_POST["username"])))
-        $username_err = "Please enter a username.";
+    if(empty(trim($_POST["username"])) || preg_match("[a-zA-Z0-9_]+", $_POST["username"]) == 0)
+        $username_err = "Please enter a valid username, or fuck you.";
     elseif (strpbrk(trim($_POST["username"]), "\"\'<>\\") != false)
 		$username_err = "Username must not contain special caracters (fuck you if you are trying injection).";
 	else {

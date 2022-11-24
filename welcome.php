@@ -17,6 +17,7 @@ $root = "";
 $perm = 0;
 
 function mysqli_result($res, $row, $field=0) {
+	// a function like this might already be built in
     $res->data_seek($row);
     $datarow = $res->fetch_array();
     return $datarow[$field];

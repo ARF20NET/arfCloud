@@ -7,18 +7,18 @@ $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
  
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate username
-    if(empty(trim($_POST["username"])) || preg_match("[a-zA-Z0-9_]+", $_POST["username"]) == 0)
+    if (empty(trim($_POST["username"])))
         $username_err = "Please enter a valid username, or fuck you.";
-    elseif (strpbrk(trim($_POST["username"]), "\"\'<>\\") != false)
+    else if (strpbrk(trim($_POST["username"]), "\"\'<>/\\") != false)
 		$username_err = "Username must not contain special caracters (fuck you if you are trying injection).";
 	else {
         // Prepare a select statement
         $sql = "SELECT id FROM users WHERE username = ?";
         
-        if($stmt = mysqli_prepare($link, $sql)){
+        if ($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             
@@ -45,34 +45,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Validate password
-    if(empty(trim($_POST["password"])))
+    if (empty(trim($_POST["password"])))
         $password_err = "Please enter a password.";     
-    elseif(strlen(trim($_POST["password"])) < 6)
+    else if(strlen(trim($_POST["password"])) < 6)
         $password_err = "Password must have atleast 6 characters.";
-	elseif(strpbrk(trim($_POST["password"]), "\"\'<>\\") != false)
+	else if(strpbrk(trim($_POST["password"]), "\"\'<>\\") != false)
 		$password_err = "Password must not contain special caracters (fuck you if you are trying injection).";
     else
         $password = trim($_POST["password"]);
     
     // Validate confirm password
-    if(empty(trim($_POST["confirm_password"])))
+    if (empty(trim($_POST["confirm_password"])))
         $confirm_password_err = "Please confirm password.";     
-    elseif(strpbrk(trim($_POST["confirm_password"]), "\"\'<>\\") != false)
+    else if(strpbrk(trim($_POST["confirm_password"]), "\"\'<>\\") != false)
 		$confirm_password_err = "Password must not contain special caracters (fuck you if you are trying injection).";
-    else{
+    else {
         $confirm_password = trim($_POST["confirm_password"]);
-        if(empty($password_err) && ($password != $confirm_password)){
+        if(empty($password_err) && ($password != $confirm_password)) {
             $confirm_password_err = "Password did not match.";
         }
     }
     
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+    if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
         
         // Prepare an insert statement
         $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
          
-        if($stmt = mysqli_prepare($link, $sql)){
+        if ($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
             
@@ -81,10 +81,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             
             // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
+            if (mysqli_stmt_execute($stmt)){
                 // Redirect to login page
                 header("location: login.php");
-            } else{
+            } else {
                 echo "SQL failed. Idk ask arf20.";
             }
 

@@ -255,7 +255,8 @@ function printDirList($dirlist) {
 	
 	echo "<tr>\n";
 	echo "<td style=\"width: {$width}px;\"><a href=\"?path=/";
-	echo substr($navdir, 1, strrpos($navdir, "/", -2));
+	if (strlen($navdir) >= 2)
+		echo substr($navdir, 1, strrpos($navdir, "/", -2));
 	echo "\">";
 	echo "..";
 	echo "</a></td>\n";
@@ -310,7 +311,6 @@ function printDirList($dirlist) {
 		<style type="text/css">
 			table {
 				table-layout: fixed;
-				//width: 90%;
 			}
 			
 			.form {

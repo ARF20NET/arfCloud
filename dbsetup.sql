@@ -2,8 +2,8 @@ SET SQL_MODE = 'NO_AUTO_VALUE_ON_ZERO';
 START TRANSACTION;
 SET time_zone = '+00:00';
 
-CREATE DATABASE exoCloud;
-use exoCloud;
+CREATE DATABASE arfcloud_users;
+use arfcloud_users;
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,

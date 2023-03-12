@@ -106,6 +106,7 @@ if (isset($_POST["upload"])) {
 if (isset($_POST["mkdir"])) {
 	global $perm;
 	$target_dir = "";
+	if ($_GET["mkdir"] == "" || $_GET["mkdir"] == "/" || $_GET["mkdir"] == ".") die("xd");
 	
 	if ($perm == 2) $target_dir = $root . $_GET["mkdir"] . "/" . $_POST["dirname"];
 	if ($perm == 15) $target_dir = $root . $_GET["mkdir"] . "/" . $_POST["dirname"];
@@ -167,6 +168,7 @@ function rrmdir($dir) {
 
 if (isset($_GET["del"])) {
 	//echo $_GET["del"] . "<br>";
+	if ($_GET["del"] == "" || $_GET["mkdir"] == "/" || $_GET["mkdir"] == ".") die("xd");
 	if ($perm == 2) $navdir = "/" . substr($_GET["del"], 0, strrpos($_GET["del"], "/", -2));
 	if ($perm == 15) $navdir = substr($_GET["del"], 0, strrpos($_GET["del"], "/", -2));
 	

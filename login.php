@@ -108,7 +108,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="wrapper">
-        <h2>Login</h2>
+        <h2>arfCloud Login</h2>
+		<p>For those who don't want their data sold by Google</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group row <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <div class="column"><label>Username</label></div>
